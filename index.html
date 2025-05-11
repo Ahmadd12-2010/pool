@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love youu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffebee;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+        
+           .img-color {
+       border-radius: 50%;
+     }
+     
+     .image-container {
+       width: 90px;
+       height: 90px;
+       overflow: hidden;
+       border-radius: 50%;
+       display: inline-block;
+     }
+        
+        .love-container {
+            position: relative;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .love-text {
+            font-size: 1rem;
+            color: #e91e63;
+            text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
+            animation: pulse 1.5s infinite alternate;
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .btn-more-love {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+        }
+        
+        .btn-more-love:hover {
+            background-color: #c2185b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="love-container">
+      <div class="img.color"><img src="khansa.jpeg" class="image-container"></div>
+        <div class="love-text">LOVE YOU SEMOGA HARI INI BAHAGIA</div>
+        <div class="love-text">khansaa jangan marah-marah mulu!! </div>
+        <button class="btn-more-love" id="moreLove">More Love!</button>
+    </div>
+
+    <script>
+        const colors = ['#e91e63', '#ff4081', '#f50057', '#ff80ab', '#c2185b'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = Math.random() * window.innerHeight + 'px';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        document.getElementById('moreLove').addEventListener('click', () => {
+            for(let i = 0; i < 20; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        });
+        
+        // Create some initial hearts
+        for(let i = 0; i < 10; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+        
+        // Create hearts periodically
+        setInterval(() => {
+            createHeart();
+        }, 500);
+    </script>
+</body>
+</html>
